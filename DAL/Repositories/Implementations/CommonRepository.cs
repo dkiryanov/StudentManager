@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
-using DAL.Entities;
-using DAL.Entities.Students;
 using DAL.Repositories.Interfaces;
 
 namespace DAL.Repositories.Implementations
@@ -15,10 +13,10 @@ namespace DAL.Repositories.Implementations
     /// <typeparam name="TEntity"></typeparam>
     public class CommonRepository<TEntity> : ICommonRepository<TEntity> where TEntity : class
     {
-        private readonly StudentsContext _context;
+        private readonly DbContext _context;
         private readonly DbSet<TEntity> _dbSet;
 
-        public CommonRepository(StudentsContext context)
+        public CommonRepository(DbContext context)
         {
             _context = context;
             _dbSet = _context.Set<TEntity>();

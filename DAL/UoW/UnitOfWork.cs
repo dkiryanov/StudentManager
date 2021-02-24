@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DAL.Entities;
 using DAL.Entities.Students;
+using DAL.Repositories.Implementations;
+using DAL.Repositories.Interfaces;
 
 namespace DAL.UoW
 {
@@ -13,33 +11,27 @@ namespace DAL.UoW
     /// </summary>
     public class UnitOfWork : IUnitOfWork
     {
-        private bool _disposed;
-        private readonly StudentsContext _context;
+        private readonly StudentsContext _studentsContext;
+        private readonly HistoryContext _historyContext;
+        private readonly InformaticsContext _informaticsContext;
+        private readonly MathsContext _mathsContext;
+
+        private ICourseInfoUnitOfWork _historyUoW;
+        private ICourseInfoUnitOfWork _informaticsUoW;
+        private ICourseInfoUnitOfWork _mathsUoW;
 
         public UnitOfWork()
         {
-            _context = new StudentsContext();
+            _studentsContext = new StudentsContext();
+            _historyContext = new HistoryContext();
+            _informaticsContext = new InformaticsContext();
+            _mathsContext = new MathsContext();
         }
 
-        public void SaveChanges()
-        {
-            _context.SaveChanges();
-        }
+        public ICourseInfoUnitOfWork History => _historyUoW ?? (_historyUoW = new HistoryUnitOfWork(_historyContext));
 
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
+        public ICourseInfoUnitOfWork Maths => _mathsUoW ?? (_mathsUoW = new MathsUnitOfWork(_mathsContext));
 
-        private void Dispose(bool disposing)
-        {
-            if (!_disposed && disposing)
-            {
-                _context.Dispose();
-            }
-
-            _disposed = true;
-        }
+        public ICourseInfoUnitOfWork Informatics => _informaticsUoW ?? (_informaticsUoW = new InformaticsUnitOfWork(_informaticsContext));
     }
 }

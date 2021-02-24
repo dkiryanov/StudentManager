@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using BLL.Models;
 using BLL.Services;
+using StudentManager.IoC;
 
 namespace StudentManager
 {
@@ -11,9 +10,24 @@ namespace StudentManager
     {
         static void Main(string[] args)
         {
-            ImporterService s = new ImporterService();
+            Console.OutputEncoding = Encoding.UTF8;
 
-            s.GetCourseInfoDtos();
+            Console.WriteLine("Запущен импорт информации об успеваемости студентов...");
+            IImporterService importerService = DependencyResolver.Resolve<IImporterService>();
+
+            ProcessImportInfoModel importInfo = importerService.ProcessImport();
+
+            Console.WriteLine($"Файлов обработано: {importInfo.FilesCount}");
+
+            foreach (var info in importInfo.Items)
+            {
+                Console.WriteLine($"Название курса: {info.Name}");
+                Console.WriteLine($"Студентов добавлено: {info.Added}");
+                Console.WriteLine($"Студентов обновлено: {info.Updated}");
+            }
+
+            Console.WriteLine("Нажмите клавишу 'Пробел' для выхода...");
+            Console.ReadKey();
         }
     }
 }

@@ -1,12 +1,12 @@
 ﻿using System.Data.Entity;
 
-namespace DAL.Entities.History
+namespace DAL.Entities
 {
     public class HistoryContext : DbContext
     {
         public HistoryContext() : base("HistoryContext")
         { }
 
-        public DbSet<HistoryCourseInfo> Courses { get; set; }
+        public DbSet<CourseInfo> Courses { get; set; }
     }
 }

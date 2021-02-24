@@ -1,8 +1,11 @@
-﻿using System;
-
-namespace DAL.UoW
+﻿namespace DAL.UoW
 {
-    public interface IUnitOfWork : IDisposable
+    public interface IUnitOfWork
     {
+        ICourseInfoUnitOfWork History { get; }
+
+        ICourseInfoUnitOfWork Informatics { get; }
+
+        ICourseInfoUnitOfWork Maths { get; }
     }
 }

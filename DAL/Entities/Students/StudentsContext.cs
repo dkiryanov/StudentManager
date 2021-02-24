@@ -2,7 +2,7 @@
 
 namespace DAL.Entities.Students
 {
-    public class StudentsContext : DbContext, IApplicationContext
+    public class StudentsContext : DbContext
     {
         public StudentsContext() : base("StudentsContext")
         {}

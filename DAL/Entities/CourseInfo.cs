@@ -2,7 +2,7 @@
 
 namespace DAL.Entities
 {
-    public abstract class CourseInfo
+    public class CourseInfo
     {
         public int Id { get; set; }
 

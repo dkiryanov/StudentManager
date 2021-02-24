@@ -1,15 +1,17 @@
-﻿namespace DAL.Migrations
+﻿using DAL.Entities;
+
+namespace DAL.Migrations
 {
     using System.Data.Entity.Migrations;
 
-    internal sealed class HistoryConfiguration : DbMigrationsConfiguration<Entities.History.HistoryContext>
+    internal class HistoryConfiguration : DbMigrationsConfiguration<HistoryContext>
     {
         public HistoryConfiguration()
         {
             AutomaticMigrationsEnabled = true;
         }
 
-        protected override void Seed(Entities.History.HistoryContext context)
+        protected override void Seed(HistoryContext context)
         {
             //  This method will be called after migrating to the latest version.
 

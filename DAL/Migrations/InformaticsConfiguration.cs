@@ -1,15 +1,17 @@
-﻿namespace DAL.Migrations
+﻿using DAL.Entities;
+
+namespace DAL.Migrations
 {
     using System.Data.Entity.Migrations;
 
-    internal sealed class InformaticsConfiguration : DbMigrationsConfiguration<DAL.Entities.Informatics.InformaticsContext>
+    internal sealed class InformaticsConfiguration : DbMigrationsConfiguration<InformaticsContext>
     {
         public InformaticsConfiguration()
         {
             AutomaticMigrationsEnabled = true;
         }
 
-        protected override void Seed(DAL.Entities.Informatics.InformaticsContext context)
+        protected override void Seed(InformaticsContext context)
         {
             //  This method will be called after migrating to the latest version.
 

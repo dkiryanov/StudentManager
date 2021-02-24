@@ -44,18 +44,21 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\StudentManager\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="EntityFramework.SqlServerCompact, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\StudentManager\packages\EntityFramework.SqlServerCompact.6.4.4\lib\net45\EntityFramework.SqlServerCompact.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data.SQLite, Version=1.0.113.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
-      <HintPath>..\StudentManager\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.113.3\lib\net451\System.Data.SQLite.dll</HintPath>
+    <Reference Include="System.Data.Common, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\StudentManager\packages\System.Data.Common.4.3.0\lib\net451\System.Data.Common.dll</HintPath>
     </Reference>
-    <Reference Include="System.Data.SQLite.EF6, Version=1.0.113.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
-      <HintPath>..\StudentManager\packages\System.Data.SQLite.EF6.1.0.113.0\lib\net451\System.Data.SQLite.EF6.dll</HintPath>
+    <Reference Include="System.Data.SqlClient, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\StudentManager\packages\System.Data.SqlClient.4.8.2\lib\net451\System.Data.SqlClient.dll</HintPath>
     </Reference>
-    <Reference Include="System.Data.SQLite.Linq, Version=1.0.113.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
-      <HintPath>..\StudentManager\packages\System.Data.SQLite.Linq.1.0.113.0\lib\net451\System.Data.SQLite.Linq.dll</HintPath>
+    <Reference Include="System.Data.SqlServerCe, Version=4.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\StudentManager\packages\Microsoft.SqlServer.Compact.4.0.8876.1\lib\net40\System.Data.SqlServerCe.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -69,13 +72,9 @@
     <Compile Include="Entities\Students\StudentsContext.cs" />
     <Compile Include="Entities\Students\Course.cs" />
     <Compile Include="Entities\CourseInfo.cs" />
-    <Compile Include="Entities\History\HistoryCourseInfo.cs" />
-    <Compile Include="Entities\History\HistoryContext.cs" />
-    <Compile Include="Entities\IApplicationContext.cs" />
-    <Compile Include="Entities\Informatics\InformaticsContext.cs" />
-    <Compile Include="Entities\Informatics\InformaticsCourseInfo.cs" />
-    <Compile Include="Entities\Maths\MathsContext.cs" />
-    <Compile Include="Entities\Maths\MathsCourseInfo.cs" />
+    <Compile Include="Entities\HistoryContext.cs" />
+    <Compile Include="Entities\InformaticsContext.cs" />
+    <Compile Include="Entities\MathsContext.cs" />
     <Compile Include="Migrations\StudentsConfiguration.cs" />
     <Compile Include="Migrations\InformaticsConfiguration.cs" />
     <Compile Include="Migrations\MathsConfiguration.cs" />
@@ -83,9 +82,20 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Implementations\CommonRepository.cs" />
+    <Compile Include="Repositories\Implementations\HistoryRepository.cs" />
+    <Compile Include="Repositories\Implementations\InformaticsRepository.cs" />
+    <Compile Include="Repositories\Implementations\MathsRepository.cs" />
     <Compile Include="Repositories\Interfaces\ICommonRepository.cs" />
+    <Compile Include="UoW\BaseUnitOfWork.cs" />
+    <Compile Include="UoW\HistoryUnitOfWork.cs" />
+    <Compile Include="UoW\IBaseUnitOfWork.cs" />
+    <Compile Include="UoW\ICourseInfoUnitOfWork.cs" />
+    <Compile Include="UoW\InformaticsUnitOfWork.cs" />
+    <Compile Include="UoW\IStudentsUnitOfWork.cs" />
     <Compile Include="UoW\IUnitOfWork.cs" />
     <Compile Include="Entities\Students\Student.cs" />
+    <Compile Include="UoW\MathsUnitOfWork.cs" />
+    <Compile Include="UoW\StudentsUnitOfWork.cs" />
     <Compile Include="UoW\UnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -100,8 +110,6 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\StudentManager\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\StudentManager\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
     <Error Condition="!Exists('..\StudentManager\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\StudentManager\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
-    <Error Condition="!Exists('..\StudentManager\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.113.3\build\net451\Stub.System.Data.SQLite.Core.NetFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\StudentManager\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.113.3\build\net451\Stub.System.Data.SQLite.Core.NetFramework.targets'))" />
   </Target>
   <Import Project="..\StudentManager\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\StudentManager\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
-  <Import Project="..\StudentManager\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.113.3\build\net451\Stub.System.Data.SQLite.Core.NetFramework.targets" Condition="Exists('..\StudentManager\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.113.3\build\net451\Stub.System.Data.SQLite.Core.NetFramework.targets')" />
 </Project>

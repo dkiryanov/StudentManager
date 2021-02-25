@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using DAL.Entities.Students;
+using DAL.Repositories.Interfaces;
 
 namespace DAL.UoW
 {
-    public interface IStudentsUnitOfWork
+    public interface IStudentsUnitOfWork : IBaseUnitOfWork
     {
+        ICommonRepository<Student> Students { get; }
+
+        ICommonRepository<Course> Courses { get; }
+
+        ICommonRepository<StudentCourse> StudentCourses { get; }
     }
 }

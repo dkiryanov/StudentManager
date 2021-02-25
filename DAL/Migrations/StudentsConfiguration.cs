@@ -2,14 +2,15 @@
 {
     using System.Data.Entity.Migrations;
 
-    internal sealed class StudentsConfiguration : DbMigrationsConfiguration<Entities.Students.StudentsContext>
+    internal sealed class StudentsConfiguration : DbMigrationsConfiguration<Entities.Students.StudentManagerContext>
     {
         public StudentsConfiguration()
         {
             AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = true;
         }
 
-        protected override void Seed(Entities.Students.StudentsContext context)
+        protected override void Seed(Entities.Students.StudentManagerContext context)
         {
             //  This method will be called after migrating to the latest version.
 

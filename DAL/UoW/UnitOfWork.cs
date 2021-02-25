@@ -1,8 +1,5 @@
-﻿using System;
-using DAL.Entities;
+﻿using DAL.Entities;
 using DAL.Entities.Students;
-using DAL.Repositories.Implementations;
-using DAL.Repositories.Interfaces;
 
 namespace DAL.UoW
 {
@@ -11,7 +8,7 @@ namespace DAL.UoW
     /// </summary>
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly StudentsContext _studentsContext;
+        private readonly StudentManagerContext _studentsContext;
         private readonly HistoryContext _historyContext;
         private readonly InformaticsContext _informaticsContext;
         private readonly MathsContext _mathsContext;
@@ -19,10 +16,11 @@ namespace DAL.UoW
         private ICourseInfoUnitOfWork _historyUoW;
         private ICourseInfoUnitOfWork _informaticsUoW;
         private ICourseInfoUnitOfWork _mathsUoW;
+        private IStudentsUnitOfWork _studentsUoW;
 
         public UnitOfWork()
         {
-            _studentsContext = new StudentsContext();
+            _studentsContext = new StudentManagerContext();
             _historyContext = new HistoryContext();
             _informaticsContext = new InformaticsContext();
             _mathsContext = new MathsContext();
@@ -33,5 +31,7 @@ namespace DAL.UoW
         public ICourseInfoUnitOfWork Maths => _mathsUoW ?? (_mathsUoW = new MathsUnitOfWork(_mathsContext));
 
         public ICourseInfoUnitOfWork Informatics => _informaticsUoW ?? (_informaticsUoW = new InformaticsUnitOfWork(_informaticsContext));
+
+        public IStudentsUnitOfWork Students => _studentsUoW ?? (_studentsUoW = new StudentsUnitOfWork(_studentsContext));
     }
 }

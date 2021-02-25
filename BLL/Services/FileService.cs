@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using BLL.DTO;
+using BLL.Services.Interfaces;
 
 namespace BLL.Services
 {
@@ -49,11 +50,15 @@ namespace BLL.Services
             for (int i = 1; i < lines.Length; i++)
             {
                 string[] splitted = lines[i].Split(' ');
+
+                int studentScore;
+                int.TryParse(splitted.LastOrDefault(), out studentScore);
+
                 dtos.Add(new CourseInfoDto()
                 {
                     CourseName = courseName,
                     StudentName = splitted.FirstOrDefault(),
-                    StudentScore = splitted.LastOrDefault()
+                    StudentScore = studentScore
                 });
             }
 

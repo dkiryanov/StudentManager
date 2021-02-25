@@ -1,5 +1,6 @@
 ﻿using BLL.Factories;
 using BLL.Services;
+using BLL.Services.Interfaces;
 using DAL.UoW;
 using Ninject.Modules;
 
@@ -16,7 +17,10 @@ namespace StudentManager.IoC
 
             // Services
             Bind<IFileService>().To<FileService>();
-            Bind<IImporterService>().To<ImporterService>();
+            Bind<IImportService>().To<ImportService>();
+            Bind<IExportService>().To<ExportService>();
+            Bind<IStudentService>().To<StudentService>();
+            Bind<ICourseService>().To<CourseService>();
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using BLL.DTO;
 
-namespace BLL.Services
+namespace BLL.Services.Interfaces
 {
     public interface IFileService
     {

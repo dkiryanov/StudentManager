@@ -68,8 +68,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entities\Students\AcademicPerformance.cs" />
-    <Compile Include="Entities\Students\StudentsContext.cs" />
+    <Compile Include="Entities\Students\StudentCourse.cs" />
+    <Compile Include="Entities\Students\StudentManagerContext.cs" />
     <Compile Include="Entities\Students\Course.cs" />
     <Compile Include="Entities\CourseInfo.cs" />
     <Compile Include="Entities\HistoryContext.cs" />
@@ -82,9 +82,12 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Implementations\CommonRepository.cs" />
+    <Compile Include="Repositories\Implementations\CourseRepository.cs" />
     <Compile Include="Repositories\Implementations\HistoryRepository.cs" />
     <Compile Include="Repositories\Implementations\InformaticsRepository.cs" />
     <Compile Include="Repositories\Implementations\MathsRepository.cs" />
+    <Compile Include="Repositories\Implementations\StudentCourseRepository.cs" />
+    <Compile Include="Repositories\Implementations\StudentRepository.cs" />
     <Compile Include="Repositories\Interfaces\ICommonRepository.cs" />
     <Compile Include="UoW\BaseUnitOfWork.cs" />
     <Compile Include="UoW\HistoryUnitOfWork.cs" />
@@ -95,7 +98,7 @@
     <Compile Include="UoW\IUnitOfWork.cs" />
     <Compile Include="Entities\Students\Student.cs" />
     <Compile Include="UoW\MathsUnitOfWork.cs" />
-    <Compile Include="UoW\StudentsUnitOfWork.cs" />
+    <Compile Include="UoW\StudentUnitOfWork.cs" />
     <Compile Include="UoW\UnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>

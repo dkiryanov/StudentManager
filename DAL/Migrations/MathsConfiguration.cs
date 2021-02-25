@@ -9,6 +9,7 @@ namespace DAL.Migrations
         public MathsConfiguration()
         {
             AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = true;
         }
 
         protected override void Seed(MathsContext context)

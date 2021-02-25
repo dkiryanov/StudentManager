@@ -7,5 +7,7 @@
         ICourseInfoUnitOfWork Informatics { get; }
 
         ICourseInfoUnitOfWork Maths { get; }
+
+        IStudentsUnitOfWork Students { get; }
     }
 }

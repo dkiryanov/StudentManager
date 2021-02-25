@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DAL.Entities.Students
 {
@@ -6,10 +7,11 @@ namespace DAL.Entities.Students
     {
         public int Id { get; set; }
 
+        [Index(IsUnique = true)]
         public string Name { get; set; }
 
-        public virtual ICollection<Student> Students { get; set; } = new List<Student>();
+        //public virtual ICollection<Student> Students { get; set; } = new List<Student>();
 
-        public virtual ICollection<AcademicPerformance> Enrollments { get; set; } = new List<AcademicPerformance>();
+        public virtual ICollection<StudentCourse> StudentCourses { get; set; } = new List<StudentCourse>();
     }
 }

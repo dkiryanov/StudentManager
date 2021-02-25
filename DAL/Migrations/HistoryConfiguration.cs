@@ -9,6 +9,7 @@ namespace DAL.Migrations
         public HistoryConfiguration()
         {
             AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = true;
         }
 
         protected override void Seed(HistoryContext context)

@@ -9,6 +9,7 @@ namespace DAL.Migrations
         public InformaticsConfiguration()
         {
             AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = true;
         }
 
         protected override void Seed(InformaticsContext context)

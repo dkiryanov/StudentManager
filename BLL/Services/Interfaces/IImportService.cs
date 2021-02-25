@@ -1,8 +1,8 @@
 ﻿using BLL.Models;
 
-namespace BLL.Services
+namespace BLL.Services.Interfaces
 {
-    public interface IImporterService
+    public interface IImportService
     {
         ProcessImportInfoModel ProcessImport();
     }

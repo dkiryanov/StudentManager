@@ -6,7 +6,7 @@ namespace BLL.DTO
     {
         public string StudentName { get; set; }
 
-        public string StudentScore { get; set; }
+        public int StudentScore { get; set; }
 
         public string CourseName { get; set; }
 

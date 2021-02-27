@@ -15,7 +15,10 @@ namespace BLL.Services
 
         private readonly List<ICourseInfoUnitOfWork> _exportSettings;
 
-        public ExportService(IUnitOfWork uow, ICourseService courseService, IStudentService studentService)
+        public ExportService(
+            IUnitOfWork uow, 
+            ICourseService courseService, 
+            IStudentService studentService)
         {
             _uow = uow;
             _courseService = courseService;
@@ -36,7 +39,7 @@ namespace BLL.Services
             {
                 List<CourseInfo> courseInfos = exportUoW
                     .CourseInfos
-                    .GetAll(x => !x.ExportedDate.HasValue)
+                    .GetAll()
                     .ToList();
 
                 foreach (CourseInfo courseInfo in courseInfos)

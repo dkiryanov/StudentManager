@@ -30,6 +30,10 @@ namespace StudentManager
             IExportService exportService = DependencyResolver.Resolve<IExportService>();
             exportService.ProcessExport();
 
+            Console.WriteLine("Запущен экспорт в Excel...");
+            IExcelService excelService = DependencyResolver.Resolve<IExcelService>();
+            excelService.Export();
+
             Console.WriteLine("Нажмите клавишу 'Пробел' для выхода...");
             Console.ReadKey();
         }

@@ -17,6 +17,7 @@ namespace StudentManager.IoC
             Bind<ICourseInfoUoWFactory>().To<CourseInfoUoWFactory>();
 
             Bind<IExcelManager>().To<ExcelManager>();
+            Bind<IExcelToPdfReport>().To<ExcelToPdfReport>();
 
             // Services
             Bind<IFileService>().To<FileService>();

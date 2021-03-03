@@ -8,15 +8,17 @@ namespace BLL.Services
 {
     public class FileService : IFileService
     {
+        private const string BasePath = "../../../txt/";
+
         private readonly IList<string> _settings;
 
         public FileService()
         {
             _settings = new List<string>()
             {
-                "maths.txt",
-                "informatics.txt",
-                "history.txt"
+                $"{BasePath}maths.txt",
+                $"{BasePath}informatics.txt",
+                $"{BasePath}history.txt"
             };    
         }
 

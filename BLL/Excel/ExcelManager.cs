@@ -19,13 +19,15 @@ namespace BLL.Excel
         private const string AverageScore = "Средний балл";
         private const string OverallAverageScore = "Общий средний балл";
         private const int RoundPrecision = 2;
-        private int FirstColumnCellIndex = 1;
-        private int SecondColumnCellIndex = 2;
-        private int DiagramDefaultRowIndex = 1;
-        private int DiagramDefaultOffset = 0;
-        private int DiagramDefaultColumnOffset = 0;
-        private int DiagramDefaultColumnIndex = 3;
-        private int DefaultDiagramBarcharFontSize = 12;
+        private const int FirstColumnCellIndex = 1;
+        private const int SecondColumnCellIndex = 2;
+        private const int ChartIndent = 4;
+        private const int DiagramDefaultOffset = 0;
+        private const int DiagramDefaultColumnOffset = 0;
+        private const int DiagramDefaultColumnIndex = 0;
+        private const int DefaultDiagramBarcharFontSize = 12;
+        private const int DiagramHeightInPx = 300;
+        private const int DiagramWidthInPx = 550;
 
         public void DisplayCourse(Course course, ExcelWorksheet ws, int index = 1)
         {
@@ -88,11 +90,13 @@ namespace BLL.Excel
 
         public void DisplayDiagram(ExcelWorksheet worksheet, int itemsCount, string chartName, string chartTitle)
         {
+            int chartRowIndex = itemsCount + ChartIndent;
             ExcelChart barChart = worksheet.Drawings.AddChart(chartName, eChartType.ColumnClustered);
-            barChart.SetPosition(DiagramDefaultRowIndex, DiagramDefaultOffset, DiagramDefaultColumnIndex, DiagramDefaultColumnOffset);
+            barChart.SetPosition(chartRowIndex, DiagramDefaultOffset, DiagramDefaultColumnIndex, DiagramDefaultColumnOffset);
             barChart.Title.Text = chartTitle;
             barChart.Title.Font.Bold = true;
             barChart.Title.Font.Size = DefaultDiagramBarcharFontSize;
+            barChart.SetSize(DiagramWidthInPx, DiagramHeightInPx);
 
             ExcelChartSerie serie = barChart
                 .Series

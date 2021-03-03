@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using BLL.DTO;
@@ -13,7 +14,8 @@ namespace BLL.Services
     public class ExcelService : IExcelService
     {
         private const int IndentIndex = 3;
-        private const string PathToSave = "../../../reports/report.xlsx";
+        private const string PathToSaveXls = "../../../reports/report.xlsx";
+        private const string PathToSavePdf = "../../../reports/report.pdf";
         private const string DefaultWorkSheetName = "Успеваемость";
         private const string AverageScoreDiagrammName = "Диаграмма средней успеваемости";
         private const string AverageScoreChartName = "Средняя успеваемость";
@@ -22,15 +24,18 @@ namespace BLL.Services
         private readonly IUnitOfWork _uow;
         private readonly IStudentCourseService _studentCourseService;
         private readonly IExcelManager _excelManager;
+        private readonly IExcelToPdfReport _excelToPdfReport;
 
         public ExcelService(
             IUnitOfWork uow, 
             IStudentCourseService studentCourseService, 
-            IExcelManager excelManager)
+            IExcelManager excelManager, 
+            IExcelToPdfReport excelToPdfReport)
         {
             _uow = uow;
             _studentCourseService = studentCourseService;
             _excelManager = excelManager;
+            _excelToPdfReport = excelToPdfReport;
         }
 
         public void Export()
@@ -64,7 +69,11 @@ namespace BLL.Services
                     DisplayCoursePerformanceDiagram(package, course);
                 }
 
-                package.SaveAs(new FileInfo(PathToSave));
+                package.SaveAs(new FileInfo(PathToSaveXls));
+
+                Console.WriteLine("Экспорт в PDF запущен...");
+                
+                _excelToPdfReport.CreateExcelToPdfReport(PathToSaveXls, PathToSavePdf);
             }
         }
 

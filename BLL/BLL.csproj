@@ -139,7 +139,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Excel.cd" />
+    <None Include="Export.cd" />
     <None Include="packages.config" />
+    <None Include="Services.cd" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DAL\DAL.csproj">

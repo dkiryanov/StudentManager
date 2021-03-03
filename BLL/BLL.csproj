@@ -33,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.9.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <HintPath>..\StudentManager\packages\BouncyCastle.1.8.9\lib\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\StudentManager\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -45,13 +48,45 @@
     <Reference Include="EPPlus, Version=5.5.5.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
       <HintPath>..\StudentManager\packages\EPPlus.5.5.5\lib\net45\EPPlus.dll</HintPath>
     </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.2, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\StudentManager\packages\iTextSharp.5.5.13.2\lib\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp.pdfa, Version=5.5.13.2, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\StudentManager\packages\itextsharp.pdfa.5.5.13.2\lib\itextsharp.pdfa.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp.xmlworker, Version=5.5.13.2, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\StudentManager\packages\itextsharp.xmlworker.5.5.13.2\lib\itextsharp.xmlworker.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.IO.RecyclableMemoryStream, Version=1.3.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\StudentManager\packages\Microsoft.IO.RecyclableMemoryStream.1.3.6\lib\net45\Microsoft.IO.RecyclableMemoryStream.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\StudentManager\packages\Microsoft.Office.Interop.Excel.15.0.4795.1000\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Ninject, Version=3.3.4.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <HintPath>..\StudentManager\packages\Ninject.3.3.4\lib\net45\Ninject.dll</HintPath>
     </Reference>
+    <Reference Include="PdfRpt, Version=2.9.4.0, Culture=neutral, PublicKeyToken=9aed730b935239dd, processorArchitecture=MSIL">
+      <HintPath>..\StudentManager\packages\PdfReport.2.9.4\lib\net45\PdfRpt.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore" />
+    <Reference Include="SautinSoft.ExcelToPdf, Version=5.4.1.20, Culture=neutral, PublicKeyToken=239046b8a1e8c07b, processorArchitecture=MSIL">
+      <HintPath>..\StudentManager\packages\sautinsoft.exceltopdf.5.4.1.20\lib\net45\SautinSoft.ExcelToPdf.dll</HintPath>
+    </Reference>
+    <Reference Include="Spire.Common, Version=1.2.560.7040, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
+      <HintPath>..\StudentManager\packages\Spire.XLS.7.11.13\lib\net40\Spire.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Spire.License, Version=1.3.5.40, Culture=neutral, PublicKeyToken=b1144360237c8b3f, processorArchitecture=MSIL">
+      <HintPath>..\StudentManager\packages\Spire.XLS.7.11.13\lib\net40\Spire.License.dll</HintPath>
+    </Reference>
+    <Reference Include="Spire.Pdf, Version=3.8.57.7040, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
+      <HintPath>..\StudentManager\packages\Spire.XLS.7.11.13\lib\net40\Spire.Pdf.dll</HintPath>
+    </Reference>
+    <Reference Include="Spire.XLS, Version=7.11.13.7040, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
+      <HintPath>..\StudentManager\packages\Spire.XLS.7.11.13\lib\net40\Spire.XLS.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.configuration" />
@@ -80,6 +115,8 @@
     <Compile Include="DTO\StudentPerformanceDto.cs" />
     <Compile Include="Excel\ExcelManager.cs" />
     <Compile Include="Excel\IExcelManager.cs" />
+    <Compile Include="Excel\ExcelToPdfReport.cs" />
+    <Compile Include="Excel\IExcelToPdfReport.cs" />
     <Compile Include="Factories\CourseInfoUoWFactory.cs" />
     <Compile Include="Factories\ICourseInfoUoWFactory.cs" />
     <Compile Include="Models\ProcessedItemModel.cs" />
@@ -102,7 +139,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Excel.cd" />
+    <None Include="Export.cd" />
     <None Include="packages.config" />
+    <None Include="Services.cd" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DAL\DAL.csproj">
@@ -110,7 +150,6 @@
       <Name>DAL</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

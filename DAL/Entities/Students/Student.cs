@@ -10,8 +10,6 @@ namespace DAL.Entities.Students
         [Index(IsUnique = true)]
         public string Name { get; set; }
 
-        //public virtual ICollection<Course> Courses { get; set; } = new List<Course>();
-
         public virtual ICollection<StudentCourse> StudentCourses { get; set; } = new List<StudentCourse>();
     }
 }
